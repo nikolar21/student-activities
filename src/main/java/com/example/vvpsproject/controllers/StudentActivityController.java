@@ -52,6 +52,9 @@ public class StudentActivityController {
                         .timeStamp(now())
                         .data(of("events", excelFilter.calculateAbsoluteFrequencyOfUploadedFiles()))
                         .message("Absolute frequency for uploaded files for all users.")
+                        .description("Absolute frequency results are represented in two columns - " +
+                                "left column represents user id and right column represents" +
+                                " frequency of uploaded files per each user.")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
@@ -65,6 +68,9 @@ public class StudentActivityController {
                         .timeStamp(now())
                         .data(of("events", excelFilter.calculateRelativeFrequencyOfUploadedFiles()))
                         .message("Relative frequency for uploaded files for all users.")
+                        .description("Relative frequency results are represented in two columns - " +
+                                "left column represents user id and right column represents" +
+                                " frequency of uploaded files per each user.")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()

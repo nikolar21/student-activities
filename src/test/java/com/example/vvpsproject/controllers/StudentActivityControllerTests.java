@@ -42,6 +42,7 @@ public class StudentActivityControllerTests {
         assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
         assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
         assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
+        assertEquals(expectedResponse.getBody().getDescription(), actualResponse.getBody().getDescription());
         assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
 
     }
@@ -61,6 +62,7 @@ public class StudentActivityControllerTests {
         assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
         assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
         assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
+        assertEquals(expectedResponse.getBody().getDescription(), actualResponse.getBody().getDescription());
         assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
 
     }
