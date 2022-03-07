@@ -24,10 +24,10 @@ public class ExcelFilter {
                 .collect(Collectors.toList());
     }
 
-    public HashMap<String, Float> calculateAbsoluteFrequencyOfUploadedFiles() {
+    public Map<String, Float> calculateAbsoluteFrequencyOfUploadedFiles() {
         Set<String> ids = findUniqueUserIds();
         List<StudentActivity> uploadedFileActivities = filterExcelForUploadedFilesEntries();
-        HashMap<String, Float> absoluteFrequency = new HashMap<>();
+        Map<String, Float> absoluteFrequency = new HashMap<>();
 
         uploadedFileActivities.forEach(entity -> ids.forEach(key -> {
             if (entity.getDescription().contains(key)) {
@@ -41,12 +41,12 @@ public class ExcelFilter {
         return absoluteFrequency;
     }
 
-    public HashMap<String, String> calculateRelativeFrequencyOfUploadedFiles() {
-        HashMap<String, Float> filesUploadedPerUser = calculateAbsoluteFrequencyOfUploadedFiles();
+    public Map<String, String> calculateRelativeFrequencyOfUploadedFiles() {
+        Map<String, Float> filesUploadedPerUser = calculateAbsoluteFrequencyOfUploadedFiles();
         int numberOfFilesUploaded = filterExcelForUploadedFilesEntries().size();
         filesUploadedPerUser.entrySet().forEach(id -> id.setValue(id.getValue() / numberOfFilesUploaded * 100));
 
-        HashMap<String, String> relativeFrequency = new HashMap<>();
+        Map<String, String> relativeFrequency = new HashMap<>();
         for (Map.Entry<String, Float> entry : filesUploadedPerUser.entrySet()) {
             relativeFrequency.put(entry.getKey(), String.format("%.2f", entry.getValue()) + "%");
         }
@@ -60,18 +60,17 @@ public class ExcelFilter {
     }
 
     public Float calculateScopeOfUploadedFiles() {
-        float scope;
         List<Float> numberOfUploadedFiles = new ArrayList<>(calculateAbsoluteFrequencyOfUploadedFiles().values());
-        scope = numberOfUploadedFiles.stream().max(Comparator.naturalOrder()).orElseThrow()
+
+        return calculateAbsoluteFrequencyOfUploadedFiles().values().stream().max(Comparator.naturalOrder()).orElseThrow()
                 - numberOfUploadedFiles.stream().min(Comparator.naturalOrder()).orElseThrow();
-        return scope;
     }
 
     public Set<String> findUniqueDescriptions() {
         List<StudentActivity> uploadedFileActivities = filterExcelForUploadedFilesEntries();
-        Set<String> description = new HashSet<>();
-        uploadedFileActivities.forEach(studentActivity -> description.add(studentActivity.getDescription()));
-        return description;
+        Set<String> descriptions = new HashSet<>();
+        uploadedFileActivities.forEach(studentActivity -> descriptions.add(studentActivity.getDescription()));
+        return descriptions;
     }
 
     public Set<String> findUniqueUserIds() {
