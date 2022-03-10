@@ -1,4 +1,4 @@
-package com.example.vvpsproject.model;
+package com.example.vvpsproject.models;
 
 import com.poiji.annotation.ExcelCellName;
 import com.poiji.annotation.ExcelRow;

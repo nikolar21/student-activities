@@ -12,10 +12,10 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class ExcelFilterTests {
+public class ExcelFilterServiceTests {
 
     @InjectMocks
-    ExcelFilter excelFilter;
+    ExcelFilterService excelFilterService;
 
     @Autowired
     ExcelFilterTestHelper excelFilterTestHelper;
@@ -27,7 +27,7 @@ public class ExcelFilterTests {
         int expectedUniqueDescriptions = 460;
 
         //WHEN
-        int actualUniqueDescriptions = excelFilter.findUniqueDescriptions().size();
+        int actualUniqueDescriptions = excelFilterService.findUniqueDescriptions().size();
 
         //THEN
         assertEquals(expectedUniqueDescriptions, actualUniqueDescriptions);
@@ -40,7 +40,7 @@ public class ExcelFilterTests {
         int expectedCount = 577;
 
         //WHEN
-        int actualCount = excelFilter.filterExcelForUploadedFilesEntries().size();
+        int actualCount = excelFilterService.filterExcelForUploadedFilesEntries().size();
 
         //THEN
         assertEquals(expectedCount, actualCount);
@@ -52,7 +52,7 @@ public class ExcelFilterTests {
         float expectedAverageValue = 4.5433073f;
 
         //WHEN
-        float actualAverageValue = excelFilter.calculateAverageValueOfUploadedFiles();
+        float actualAverageValue = excelFilterService.calculateAverageValueOfUploadedFiles();
 
         //THEN
         assertEquals(expectedAverageValue, actualAverageValue);
@@ -65,7 +65,7 @@ public class ExcelFilterTests {
         float expectedScope = 9.0f;
 
         //WHEN
-        float actualAverageScope = excelFilter.calculateScopeOfUploadedFiles();
+        float actualAverageScope = excelFilterService.calculateScopeOfUploadedFiles();
 
         //THEN
         assertEquals(expectedScope, actualAverageScope);
@@ -78,7 +78,7 @@ public class ExcelFilterTests {
         Set<String> expectedUniqueIds = excelFilterTestHelper.buildUniqueIdsSet();
 
         //WHEN
-        Set<String> actualUniqueIds = excelFilter.findUniqueUserIds();
+        Set<String> actualUniqueIds = excelFilterService.findUniqueUserIds();
 
         //THEN
         assertEquals(expectedUniqueIds, actualUniqueIds);
@@ -91,7 +91,7 @@ public class ExcelFilterTests {
         Map<String, Float> expectedAbsoluteFrequency = excelFilterTestHelper.buildAbsoluteFrequencyMap();
 
         //WHEN
-        Map<String, Float> actualAbsoluteFrequency = excelFilter.calculateAbsoluteFrequencyOfUploadedFiles();
+        Map<String, Float> actualAbsoluteFrequency = excelFilterService.calculateAbsoluteFrequencyOfUploadedFiles();
 
         //THEN
         assertEquals(expectedAbsoluteFrequency, actualAbsoluteFrequency);
@@ -104,7 +104,7 @@ public class ExcelFilterTests {
         Map<String, String> expectedRelativeFrequency = excelFilterTestHelper.buildRelativeFrequencyMap();
 
         //WHEN
-        Map<String, String> actualRelativeFrequency = excelFilter.calculateRelativeFrequencyOfUploadedFiles();
+        Map<String, String> actualRelativeFrequency = excelFilterService.calculateRelativeFrequencyOfUploadedFiles();
 
         //THEN
         assertEquals(expectedRelativeFrequency, actualRelativeFrequency);

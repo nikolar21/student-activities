@@ -1,7 +1,7 @@
 package com.example.vvpsproject.helpers;
 
-import com.example.vvpsproject.model.Response;
-import com.example.vvpsproject.services.ExcelFilter;
+import com.example.vvpsproject.models.Response;
+import com.example.vvpsproject.services.ExcelFilterService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import static org.springframework.http.HttpStatus.OK;
 @Component
 public class ExcelFilterTestHelper {
 
-    public ResponseEntity<Response> buildAbsoluteFrequencyResponse(ExcelFilter excelFilter) {
+    public ResponseEntity<Response> buildAbsoluteFrequencyResponse(ExcelFilterService excelFilter) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
@@ -30,7 +30,7 @@ public class ExcelFilterTestHelper {
         );
     }
 
-    public ResponseEntity<Response> buildRelativeFrequencyResponse(ExcelFilter excelFilter) {
+    public ResponseEntity<Response> buildRelativeFrequencyResponse(ExcelFilterService excelFilter) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
@@ -45,7 +45,7 @@ public class ExcelFilterTestHelper {
         );
     }
 
-    public ResponseEntity<Response> buildAverageValueOfUploadedFilesResponse(ExcelFilter excelFilter) {
+    public ResponseEntity<Response> buildAverageValueOfUploadedFilesResponse(ExcelFilterService excelFilter) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
@@ -57,11 +57,11 @@ public class ExcelFilterTestHelper {
         );
     }
 
-    public ResponseEntity<Response> buildScopeValueOfUploadedFilesResponse(ExcelFilter excelFilter) {
+    public ResponseEntity<Response> buildScopeValueOfUploadedFilesResponse(ExcelFilterService excelFilterService) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("scope", excelFilter.calculateScopeOfUploadedFiles()))
+                        .data(of("scope", excelFilterService.calculateScopeOfUploadedFiles()))
                         .message("Scope of uploaded files for all users")
                         .status(OK)
                         .statusCode(OK.value())
@@ -69,11 +69,11 @@ public class ExcelFilterTestHelper {
         );
     }
 
-    public ResponseEntity<Response> buildFilesUploadedPerUserResponse(ExcelFilter excelFilter) {
+    public ResponseEntity<Response> buildFilesUploadedPerUserResponse(ExcelFilterService excelFilterService) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("events", excelFilter.calculateAbsoluteFrequencyOfUploadedFiles()))
+                        .data(of("events", excelFilterService.calculateAbsoluteFrequencyOfUploadedFiles()))
                         .message("Files uploaded per user.")
                         .status(OK)
                         .statusCode(OK.value())
@@ -81,11 +81,11 @@ public class ExcelFilterTestHelper {
         );
     }
 
-    public ResponseEntity<Response> buildFilesUploadedEntries(ExcelFilter excelFilter) {
+    public ResponseEntity<Response> buildFilesUploadedEntries(ExcelFilterService excelFilterService) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("events", excelFilter.filterExcelForUploadedFilesEntries()))
+                        .data(of("events", excelFilterService.filterExcelForUploadedFilesEntries()))
                         .message("All entries with event name 'A file has been uploaded'.")
                         .status(OK)
                         .statusCode(OK.value())

@@ -1,4 +1,4 @@
-package com.example.vvpsproject.model;
+package com.example.vvpsproject.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

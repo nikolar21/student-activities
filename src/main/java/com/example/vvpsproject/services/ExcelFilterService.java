@@ -1,7 +1,7 @@
 package com.example.vvpsproject.services;
 
 import com.example.vvpsproject.constants.FilterHelper;
-import com.example.vvpsproject.model.StudentActivity;
+import com.example.vvpsproject.models.StudentActivity;
 import com.poiji.bind.Poiji;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class ExcelFilter {
+public class ExcelFilterService {
 
     /*
      * Method for filtering given Excel file and returning all entries where event name is "A file has been uploaded"

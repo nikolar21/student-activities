@@ -1,7 +1,7 @@
 package com.example.vvpsproject.controllers;
 
-import com.example.vvpsproject.model.Response;
-import com.example.vvpsproject.services.ExcelFilter;
+import com.example.vvpsproject.models.Response;
+import com.example.vvpsproject.services.ExcelFilterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,11 +13,11 @@ import static java.util.Map.of;
 import static org.springframework.http.HttpStatus.OK;
 
 @Controller
-@RequestMapping("/students/activities")
+@RequestMapping("api/v1/students/activities")
 @RequiredArgsConstructor
 public class StudentActivityController {
 
-    private final ExcelFilter excelFilter;
+    private final ExcelFilterService excelFilter;
 
     @GetMapping("/filter/uploaded-files")
     public ResponseEntity<Response> getFileUploadedEntries() {

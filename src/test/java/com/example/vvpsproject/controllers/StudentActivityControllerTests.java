@@ -1,8 +1,8 @@
 package com.example.vvpsproject.controllers;
 
 import com.example.vvpsproject.helpers.ExcelFilterTestHelper;
-import com.example.vvpsproject.model.Response;
-import com.example.vvpsproject.services.ExcelFilter;
+import com.example.vvpsproject.models.Response;
+import com.example.vvpsproject.services.ExcelFilterService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StudentActivityControllerTests {
 
     @Mock
-    ExcelFilter excelFilter = new ExcelFilter();
+    ExcelFilterService excelFilter = new ExcelFilterService();
 
     @InjectMocks
     StudentActivityController studentActivityController;
