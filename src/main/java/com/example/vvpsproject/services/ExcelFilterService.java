@@ -3,6 +3,7 @@ package com.example.vvpsproject.services;
 import com.example.vvpsproject.constants.FilterHelper;
 import com.example.vvpsproject.models.StudentActivity;
 import com.poiji.bind.Poiji;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -10,6 +11,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class ExcelFilterService {
 
     /*
@@ -17,11 +19,16 @@ public class ExcelFilterService {
      */
     public List<StudentActivity> filterExcelForUploadedFilesEntries() {
         File file = new File(FilterHelper.FILE_PATH);
-        List<StudentActivity> studentActivities = Poiji.fromExcel(file, StudentActivity.class);
-        return studentActivities
-                .stream()
-                .filter(eventName -> FilterHelper.A_FILE_HAS_BEEN_UPLOADED.equals(eventName.getEventName()))
-                .collect(Collectors.toList());
+        try {
+            List<StudentActivity> studentActivities = Poiji.fromExcel(file, StudentActivity.class);
+            return studentActivities
+                    .stream()
+                    .filter(eventName -> FilterHelper.A_FILE_HAS_BEEN_UPLOADED.equals(eventName.getEventName()))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            log.error("Error occurred while processing file {} {}", e.getCause(), e.getMessage());
+        }
+        return null;
     }
 
     public Map<String, Float> calculateAbsoluteFrequencyOfUploadedFiles() {
