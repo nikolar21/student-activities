@@ -18,129 +18,163 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class StudentActivityControllerTests {
 
-    @Mock
-    ExcelFilterService excelFilter = new ExcelFilterService();
+  @Mock ExcelFilterService excelFilter = new ExcelFilterService();
 
-    @InjectMocks
-    StudentActivityController studentActivityController;
+  @InjectMocks StudentActivityController studentActivityController;
 
-    @Autowired
-    ExcelFilterTestHelper excelFilterTestHelper;
+  @Autowired ExcelFilterTestHelper excelFilterTestHelper;
 
-    @Test
-    void validateAbsoluteFrequencyOfUploadedFilesResponse() {
+  @Test
+  void validateAbsoluteFrequencyOfUploadedFilesResponse() {
 
-        //GIVEN
-        ResponseEntity<Response> expectedResponse = excelFilterTestHelper.buildAbsoluteFrequencyResponse(excelFilter);
+    // GIVEN
+    ResponseEntity<Response> expectedResponse =
+        excelFilterTestHelper.buildAbsoluteFrequencyResponse(excelFilter);
 
-        //WHEN
-        ResponseEntity<Response> actualResponse = studentActivityController.getAbsoluteFrequency();
+    // WHEN
+    ResponseEntity<Response> actualResponse = studentActivityController.getAbsoluteFrequency();
 
-        //THEN
-        assertEquals(Objects.requireNonNull(expectedResponse.getBody()).getTimeStamp().truncatedTo(ChronoUnit.HOURS),
-                Objects.requireNonNull(actualResponse.getBody()).getTimeStamp().truncatedTo(ChronoUnit.HOURS));
-        assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
-        assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
-        assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
-        assertEquals(expectedResponse.getBody().getDescription(), actualResponse.getBody().getDescription());
-        assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
+    // THEN
+    assertEquals(
+        Objects.requireNonNull(expectedResponse.getBody())
+            .getTimeStamp()
+            .truncatedTo(ChronoUnit.HOURS),
+        Objects.requireNonNull(actualResponse.getBody())
+            .getTimeStamp()
+            .truncatedTo(ChronoUnit.HOURS));
+    assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
+    assertEquals(expectedResponse.getStatusCodeValue(), actualResponse.getStatusCodeValue());
+    assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
+    assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
+    assertEquals(
+        expectedResponse.getBody().getDescription(), actualResponse.getBody().getDescription());
+    assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
+  }
 
-    }
+  @Test
+  void validateRelativeFrequencyOfUploadedFilesResponse() {
 
-    @Test
-    void validateRelativeFrequencyOfUploadedFilesResponse() {
+    // GIVEN
+    ResponseEntity<Response> expectedResponse =
+        excelFilterTestHelper.buildRelativeFrequencyResponse(excelFilter);
 
-        //GIVEN
-        ResponseEntity<Response> expectedResponse = excelFilterTestHelper.buildRelativeFrequencyResponse(excelFilter);
+    // WHEN
+    ResponseEntity<Response> actualResponse = studentActivityController.getRelativeFrequency();
 
-        //WHEN
-        ResponseEntity<Response> actualResponse = studentActivityController.getRelativeFrequency();
+    // THEN
+    assertEquals(
+        Objects.requireNonNull(expectedResponse.getBody())
+            .getTimeStamp()
+            .truncatedTo(ChronoUnit.HOURS),
+        Objects.requireNonNull(actualResponse.getBody())
+            .getTimeStamp()
+            .truncatedTo(ChronoUnit.HOURS));
+    assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
+    assertEquals(expectedResponse.getStatusCodeValue(), actualResponse.getStatusCodeValue());
+    assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
+    assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
+    assertEquals(
+        expectedResponse.getBody().getDescription(), actualResponse.getBody().getDescription());
+    assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
+  }
 
-        //THEN
-        assertEquals(Objects.requireNonNull(expectedResponse.getBody()).getTimeStamp().truncatedTo(ChronoUnit.HOURS),
-                Objects.requireNonNull(actualResponse.getBody()).getTimeStamp().truncatedTo(ChronoUnit.HOURS));
-        assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
-        assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
-        assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
-        assertEquals(expectedResponse.getBody().getDescription(), actualResponse.getBody().getDescription());
-        assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
+  @Test
+  void validateAverageValueOfUploadedFilesResponse() {
 
-    }
+    // GIVEN
+    ResponseEntity<Response> expectedResponse =
+        excelFilterTestHelper.buildAverageValueOfUploadedFilesResponse(excelFilter);
 
-    @Test
-    void validateAverageValueOfUploadedFilesResponse() {
+    // WHEN
+    ResponseEntity<Response> actualResponse = studentActivityController.getAverage();
 
-        //GIVEN
-        ResponseEntity<Response> expectedResponse = excelFilterTestHelper.buildAverageValueOfUploadedFilesResponse(excelFilter);
+    // THEN
+    assertEquals(
+        Objects.requireNonNull(expectedResponse.getBody())
+            .getTimeStamp()
+            .truncatedTo(ChronoUnit.HOURS),
+        Objects.requireNonNull(actualResponse.getBody())
+            .getTimeStamp()
+            .truncatedTo(ChronoUnit.HOURS));
+    assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
+    assertEquals(expectedResponse.getStatusCodeValue(), actualResponse.getStatusCodeValue());
+    assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
+    assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
+    assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
+  }
 
-        //WHEN
-        ResponseEntity<Response> actualResponse = studentActivityController.getAverage();
+  @Test
+  void validateScopeOfUploadedFilesResponse() {
 
-        //THEN
-        assertEquals(Objects.requireNonNull(expectedResponse.getBody()).getTimeStamp().truncatedTo(ChronoUnit.HOURS),
-                Objects.requireNonNull(actualResponse.getBody()).getTimeStamp().truncatedTo(ChronoUnit.HOURS));
-        assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
-        assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
-        assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
-        assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
+    // GIVEN
+    ResponseEntity<Response> expectedResponse =
+        excelFilterTestHelper.buildScopeValueOfUploadedFilesResponse(excelFilter);
 
-    }
+    // WHEN
+    ResponseEntity<Response> actualResponse = studentActivityController.getScope();
 
-    @Test
-    void validateScopeOfUploadedFilesResponse() {
+    // THEN
+    assertEquals(
+        Objects.requireNonNull(expectedResponse.getBody())
+            .getTimeStamp()
+            .truncatedTo(ChronoUnit.HOURS),
+        Objects.requireNonNull(actualResponse.getBody())
+            .getTimeStamp()
+            .truncatedTo(ChronoUnit.HOURS));
+    assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
+    assertEquals(expectedResponse.getStatusCodeValue(), actualResponse.getStatusCodeValue());
+    assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
+    assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
+    assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
+  }
 
-        //GIVEN
-        ResponseEntity<Response> expectedResponse = excelFilterTestHelper.buildScopeValueOfUploadedFilesResponse(excelFilter);
+  @Test
+  void validateUploadedFilesPerUserResponse() {
 
-        //WHEN
-        ResponseEntity<Response> actualResponse = studentActivityController.getScope();
+    // GIVEN
+    ResponseEntity<Response> expectedResponse =
+        excelFilterTestHelper.buildFilesUploadedPerUserResponse(excelFilter);
 
-        //THEN
-        assertEquals(Objects.requireNonNull(expectedResponse.getBody()).getTimeStamp().truncatedTo(ChronoUnit.HOURS),
-                Objects.requireNonNull(actualResponse.getBody()).getTimeStamp().truncatedTo(ChronoUnit.HOURS));
-        assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
-        assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
-        assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
-        assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
+    // WHEN
+    ResponseEntity<Response> actualResponse = studentActivityController.getFilesUploadedPerUser();
 
-    }
+    // THEN
+    assertEquals(
+        Objects.requireNonNull(expectedResponse.getBody())
+            .getTimeStamp()
+            .truncatedTo(ChronoUnit.HOURS),
+        Objects.requireNonNull(actualResponse.getBody())
+            .getTimeStamp()
+            .truncatedTo(ChronoUnit.HOURS));
+    assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
+    assertEquals(expectedResponse.getStatusCodeValue(), actualResponse.getStatusCodeValue());
+    assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
+    assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
+    assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
+  }
 
-    @Test
-    void validateUploadedFilesPerUserResponse() {
+  @Test
+  void validateFileUploadedEntriesResponse() {
 
-        //GIVEN
-        ResponseEntity<Response> expectedResponse = excelFilterTestHelper.buildFilesUploadedPerUserResponse(excelFilter);
+    // GIVEN
+    ResponseEntity<Response> expectedResponse =
+        excelFilterTestHelper.buildFilesUploadedEntries(excelFilter);
 
-        //WHEN
-        ResponseEntity<Response> actualResponse = studentActivityController.getFilesUploadedPerUser();
+    // WHEN
+    ResponseEntity<Response> actualResponse = studentActivityController.getFileUploadedEntries();
 
-        //THEN
-        assertEquals(Objects.requireNonNull(expectedResponse.getBody()).getTimeStamp().truncatedTo(ChronoUnit.HOURS),
-                Objects.requireNonNull(actualResponse.getBody()).getTimeStamp().truncatedTo(ChronoUnit.HOURS));
-        assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
-        assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
-        assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
-        assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
-
-    }
-
-    @Test
-    void validateFileUploadedEntriesResponse() {
-
-        //GIVEN
-        ResponseEntity<Response> expectedResponse = excelFilterTestHelper.buildFilesUploadedEntries(excelFilter);
-
-        //WHEN
-        ResponseEntity<Response> actualResponse = studentActivityController.getFileUploadedEntries();
-
-        //THEN
-        assertEquals(Objects.requireNonNull(expectedResponse.getBody()).getTimeStamp().truncatedTo(ChronoUnit.HOURS),
-                Objects.requireNonNull(actualResponse.getBody()).getTimeStamp().truncatedTo(ChronoUnit.HOURS));
-        assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
-        assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
-        assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
-        assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
-
-    }
-
+    // THEN
+    assertEquals(
+        Objects.requireNonNull(expectedResponse.getBody())
+            .getTimeStamp()
+            .truncatedTo(ChronoUnit.HOURS),
+        Objects.requireNonNull(actualResponse.getBody())
+            .getTimeStamp()
+            .truncatedTo(ChronoUnit.HOURS));
+    assertEquals(expectedResponse.getStatusCode(), actualResponse.getStatusCode());
+    assertEquals(expectedResponse.getStatusCodeValue(), actualResponse.getStatusCodeValue());
+    assertEquals(expectedResponse.getBody().getStatus(), actualResponse.getBody().getStatus());
+    assertEquals(expectedResponse.getBody().getMessage(), actualResponse.getBody().getMessage());
+    assertEquals(expectedResponse.getBody().getData(), actualResponse.getBody().getData());
+  }
 }

@@ -14,99 +14,101 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class ExcelFilterServiceTests {
 
-    @InjectMocks
-    ExcelFilterService excelFilterService;
+  @InjectMocks ExcelFilterService excelFilterService;
 
-    @Autowired
-    ExcelFilterTestHelper excelFilterTestHelper;
+  @Autowired ExcelFilterTestHelper excelFilterTestHelper;
 
-    @Test
-    void shouldFindNUniqueDescriptions() {
+  @Test
+  void shouldFindNUniqueDescriptions() {
 
-        //GIVEN
-        int expectedUniqueDescriptions = 460;
+    // GIVEN
+    int expectedUniqueDescriptions = 460;
 
-        //WHEN
-        int actualUniqueDescriptions = excelFilterService.findUniqueDescriptions().size();
+    // WHEN
+    int actualUniqueDescriptions = excelFilterService.findUniqueDescriptions().size();
 
-        //THEN
-        assertEquals(expectedUniqueDescriptions, actualUniqueDescriptions);
-    }
+    // THEN
+    assertEquals(expectedUniqueDescriptions, actualUniqueDescriptions);
+  }
 
-    @Test
-    void shouldFind577UploadedFileEntries() {
+  @Test
+  void shouldFind577UploadedFileEntries() {
 
-        //GIVEN
-        int expectedCount = 577;
+    // GIVEN
+    int expectedCount = 577;
 
-        //WHEN
-        int actualCount = excelFilterService.filterExcelForUploadedFilesEntries().size();
+    // WHEN
+    int actualCount = excelFilterService.filterExcelForUploadedFilesEntries().size();
 
-        //THEN
-        assertEquals(expectedCount, actualCount);
-    }
+    // THEN
+    assertEquals(expectedCount, actualCount);
+  }
 
-    @Test
-    void validateAverageValueOfUploadedFilesWhenCalculateAverageInvoked() {
-        //GIVEN
-        float expectedAverageValue = 4.5433073f;
+  @Test
+  void validateAverageValueOfUploadedFilesWhenCalculateAverageInvoked() {
+    // GIVEN
+    float expectedAverageValue = 4.5433073f;
 
-        //WHEN
-        float actualAverageValue = excelFilterService.calculateAverageValueOfUploadedFiles();
+    // WHEN
+    float actualAverageValue = excelFilterService.calculateAverageValueOfUploadedFiles();
 
-        //THEN
-        assertEquals(expectedAverageValue, actualAverageValue);
-    }
+    // THEN
+    assertEquals(expectedAverageValue, actualAverageValue);
+  }
 
-    @Test
-    void validateScopeOfUploadedFilesWhenCalculateScopeInvoked() {
+  @Test
+  void validateScopeOfUploadedFilesWhenCalculateScopeInvoked() {
 
-        //GIVEN
-        float expectedScope = 9.0f;
+    // GIVEN
+    float expectedScope = 9.0f;
 
-        //WHEN
-        float actualAverageScope = excelFilterService.calculateScopeOfUploadedFiles();
+    // WHEN
+    float actualAverageScope = excelFilterService.calculateScopeOfUploadedFiles();
 
-        //THEN
-        assertEquals(expectedScope, actualAverageScope);
-    }
+    // THEN
+    assertEquals(expectedScope, actualAverageScope);
+  }
 
-    @Test
-    void validateUniqueIdsWhenFindUniqueIdsInvoked() {
+  @Test
+  void validateUniqueIdsWhenFindUniqueIdsInvoked() {
 
-        //GIVEN
-        Set<String> expectedUniqueIds = excelFilterTestHelper.buildUniqueIdsSet();
+    // GIVEN
+    Set<String> expectedUniqueIds = excelFilterTestHelper.buildUniqueIdsSet();
 
-        //WHEN
-        Set<String> actualUniqueIds = excelFilterService.findUniqueUserIds();
+    // WHEN
+    Set<String> actualUniqueIds = excelFilterService.findUniqueUserIds();
 
-        //THEN
-        assertEquals(expectedUniqueIds, actualUniqueIds);
-    }
+    // THEN
+    assertEquals(expectedUniqueIds, actualUniqueIds);
+  }
 
-    @Test
-    void validateAbsoluteFrequencyWhenCalculateAbsoluteFrequencyInvoked() {
+  @Test
+  void validateAbsoluteFrequencyWhenCalculateAbsoluteFrequencyInvoked() {
 
-        //GIVEN
-        Map<String, Float> expectedAbsoluteFrequency = excelFilterTestHelper.buildAbsoluteFrequencyMap();
+    // GIVEN
+    Map<String, Float> expectedAbsoluteFrequency =
+        excelFilterTestHelper.buildAbsoluteFrequencyMap();
 
-        //WHEN
-        Map<String, Float> actualAbsoluteFrequency = excelFilterService.calculateAbsoluteFrequencyOfUploadedFiles();
+    // WHEN
+    Map<String, Float> actualAbsoluteFrequency =
+        excelFilterService.calculateAbsoluteFrequencyOfUploadedFiles();
 
-        //THEN
-        assertEquals(expectedAbsoluteFrequency, actualAbsoluteFrequency);
-    }
+    // THEN
+    assertEquals(expectedAbsoluteFrequency, actualAbsoluteFrequency);
+  }
 
-    @Test
-    void validateRelativeFrequencyWhenCalculateAbsoluteFrequencyInvoked() {
+  @Test
+  void validateRelativeFrequencyWhenCalculateAbsoluteFrequencyInvoked() {
 
-        //GIVEN
-        Map<String, String> expectedRelativeFrequency = excelFilterTestHelper.buildRelativeFrequencyMap();
+    // GIVEN
+    Map<String, String> expectedRelativeFrequency =
+        excelFilterTestHelper.buildRelativeFrequencyMap();
 
-        //WHEN
-        Map<String, String> actualRelativeFrequency = excelFilterService.calculateRelativeFrequencyOfUploadedFiles();
+    // WHEN
+    Map<String, String> actualRelativeFrequency =
+        excelFilterService.calculateRelativeFrequencyOfUploadedFiles();
 
-        //THEN
-        assertEquals(expectedRelativeFrequency, actualRelativeFrequency);
-    }
+    // THEN
+    assertEquals(expectedRelativeFrequency, actualRelativeFrequency);
+  }
 }
