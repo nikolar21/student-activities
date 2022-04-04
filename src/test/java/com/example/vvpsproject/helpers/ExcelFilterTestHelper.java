@@ -18,30 +18,24 @@ public class ExcelFilterTestHelper {
   public ResponseEntity<Response> buildAbsoluteFrequencyResponse(ExcelFilterService excelFilter) {
     return ResponseEntity.ok(
         Response.builder()
-            .timeStamp(now())
-            .data(of("events", excelFilter.calculateAbsoluteFrequencyOfUploadedFiles()))
+            .data(of("values", excelFilter.calculateAbsoluteFrequencyOfUploadedFiles()))
             .message("Absolute frequency for uploaded files for all users.")
             .description(
                 "Absolute frequency results are represented in two columns - "
                     + "left column represents user id and right column represents"
                     + " frequency of uploaded files per each user.")
-            .status(OK)
-            .statusCode(OK.value())
             .build());
   }
 
   public ResponseEntity<Response> buildRelativeFrequencyResponse(ExcelFilterService excelFilter) {
     return ResponseEntity.ok(
         Response.builder()
-            .timeStamp(now())
-            .data(of("events", excelFilter.calculateRelativeFrequencyOfUploadedFiles()))
+            .data(of("values", excelFilter.calculateRelativeFrequencyOfUploadedFiles()))
             .message("Relative frequency for uploaded files for all users.")
             .description(
                 "Relative frequency results are represented in two columns - "
                     + "left column represents user id and right column represents"
                     + " frequency of uploaded files per each user.")
-            .status(OK)
-            .statusCode(OK.value())
             .build());
   }
 
@@ -49,11 +43,8 @@ public class ExcelFilterTestHelper {
       ExcelFilterService excelFilter) {
     return ResponseEntity.ok(
         Response.builder()
-            .timeStamp(now())
             .data(of("average value", excelFilter.calculateAverageValueOfUploadedFiles()))
             .message("Average value of all uploaded files.")
-            .status(OK)
-            .statusCode(OK.value())
             .build());
   }
 
@@ -61,11 +52,8 @@ public class ExcelFilterTestHelper {
       ExcelFilterService excelFilterService) {
     return ResponseEntity.ok(
         Response.builder()
-            .timeStamp(now())
             .data(of("scope", excelFilterService.calculateScopeOfUploadedFiles()))
             .message("Scope of uploaded files for all users.")
-            .status(OK)
-            .statusCode(OK.value())
             .build());
   }
 
@@ -73,22 +61,16 @@ public class ExcelFilterTestHelper {
       ExcelFilterService excelFilterService) {
     return ResponseEntity.ok(
         Response.builder()
-            .timeStamp(now())
-            .data(of("events", excelFilterService.calculateAbsoluteFrequencyOfUploadedFiles()))
+            .data(of("values", excelFilterService.calculateAbsoluteFrequencyOfUploadedFiles()))
             .message("Files uploaded per user.")
-            .status(OK)
-            .statusCode(OK.value())
             .build());
   }
 
   public ResponseEntity<Response> buildFilesUploadedEntries(ExcelFilterService excelFilterService) {
     return ResponseEntity.ok(
         Response.builder()
-            .timeStamp(now())
-            .data(of("events", excelFilterService.filterExcelForUploadedFilesEntries()))
+            .data(of("values", excelFilterService.filterExcelForUploadedFilesEntries()))
             .message("All entries with event name 'A file has been uploaded'.")
-            .status(OK)
-            .statusCode(OK.value())
             .build());
   }
 
